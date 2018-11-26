@@ -1,9 +1,9 @@
-document.getElementById("id_business_version").innerHTML="Business version: 2018.11.26.1";
+document.getElementById("id_business_version").innerHTML="Business version: 2018.11.26.2";
 
 var canvas = doc.getElementById("id_canvas");
 canvas.addEventListener("touchstart", on_touch_start);
 
-function on_touch_start (e)
+function on_touch_start(e)
 {
 	for (var i = 0; i < e.changedTouches.Length; i++){
 		var contex = canvas.getContext("2d");
