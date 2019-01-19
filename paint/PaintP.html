@@ -26,12 +26,9 @@ function erase(){item='e';events();}
 function spray(){item='f';events();}
 function undo(){if(l.length>=1){b.width=b.width;c.putImageData(l[l.length-1],0,0);l.pop();}}
 
-    var canvas;
-    var ctx;
-    var lastPt = new Object();
-    var colours = ['red', 'green', 'blue', 'yellow', 'black'];
-  
-    function init() {
+
+
+   function init() {
       var touchzone = document.getElementById("mycanvas");
       touchzone.addEventListener("touchmove", draw, false);
       touchzone.addEventListener("touchend", end, false);   
