@@ -1,4 +1,4 @@
-    var imageLoader = document.getElementById('imageLoader');
+var imageLoader = document.getElementById('imageLoader');
     imageLoader.addEventListener('change', handleImage, false);
 
     var canvas = document.getElementById('myCanvas');
@@ -39,54 +39,43 @@ function newCanvas(){
      alert("Zapisano");
  }
 
-//window.addEventListener('resize',function(e){
- //canvas.width = parseInt(paint_style.getPropertyValue('width'));
- //       canvas.height = parseInt(paint_style.getPropertyValue('height'));
-//		},false);
-//}
-//window.addEventListener('orientationchange',function(e){
-// canvas.width = parseInt(paint_style.getPropertyValue('width'));
-//        canvas.height = parseInt(paint_style.getPropertyValue('height'));
-//		},false);
-//}
+
 window.addEventListener("resize",function(){
 
   tmpCanvas.width = canvas.height;
   tmpCanvas.height = canvas.width;
   tmpCtx = tempCanvas.getContext('2d');
  
-  // Copy to temporary canvas
+
   tempCanvas.drawImage(canvas, 0, 0);
   
-  // Resize original canvas
+
   canvas.width = parseInt(paint_style.getPropertyValue('width'));
    canvas.height = parseInt(paint_style.getPropertyValue('height'));
-  // Copy back to resized canvas
+
   ctx = canvas.getContext('2d');
   ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.height, canvas.width);
 
 
 },false);
 window.addEventListener("orientationchange", function() {
-	// Announce the new orientation number
-	//alert(screen.orientation);
-	  // Set up temporary canvas
+
   tmpCanvas.width = canvas.height;
   tmpCanvas.height = canvas.width;
   tmpCtx = tempCanvas.getContext('2d');
  
-  // Copy to temporary canvas
+
   tempCanvas.drawImage(canvas, 0, 0);
   
-  // Resize original canvas
+
    canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  // Copy back to resized canvas
+
   ctx = canvas.getContext('2d');
   ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.height, canvas.width);
 
 }, false);
- //Touch events
+
     canvas.addEventListener('touchstart', function(e) {
         ctx.beginPath();
        x = e.changedTouches[0].pageX;
@@ -109,7 +98,7 @@ x = e.changedTouches[0].pageX;
         canvas.dispatchEvent(mouseEvent);
     }, false);
 
-    // Prevent scrolling when touching the canvas
+
     document.body.addEventListener("touchstart", function (e) {
         if (e.target == canvas) {
             e.preventDefault();
@@ -127,10 +116,7 @@ x = e.changedTouches[0].pageX;
     }, false);
 
 
-    //Mouse events
-
-
-    canvas.addEventListener('mousemove', function(e) {
+	canvas.addEventListener('mousemove', function(e) {
       mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
     }, false);
