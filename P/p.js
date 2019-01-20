@@ -1,75 +1,172 @@
+  var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
 
-$('.pen-tool').on('click',function (e) {
-    let $li = $(e.currentTarget);
-    $li.addClass('current').siblings().removeClass('current');
-});
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
 
-
-let canvas = document.querySelector('.drawInput');
-let clientHeight = document.documentElement.clientHeight;
-let clientWidth = document.documentElement.clientWidth;
-canvas.width = clientWidth-6;
-canvas.height = clientHeight-68;
-let prePoint;
+    var painting = document.getElementById('myCanvas');
+    var paint_style = getComputedStyle(painting);
+    canvas.width = parseInt(paint_style.getPropertyValue('width'));
+    canvas.height = parseInt(paint_style.getPropertyValue('height'));
 
 
-canvas.addEventListener('touchmove', function (e) {
-    e.preventDefault();
-    
-    let clientX = e.touches[0].clientX;
-    let clientY = e.touches[0].clientY;
+    var mouse = {x: 0, y: 0};
 
-    
-    let $index = $('.pen-tool').filter('.current').index();
+ctx.color='red';
+    ctx.lineWidth = 3;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'red';
+//}
+function newCanvas(){
+  canvas.width = parseInt(paint_style.getPropertyValue('width'));
+   canvas.height = parseInt(paint_style.getPropertyValue('height'));
+   ctx.color='red';
+    ctx.lineWidth = 3;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'red';
+}
 
-    
-    if ($index === 0) {                              
-        if (prePoint) {
-            let ctx = canvas.getContext('2d');
-            ctx.fillStyle = 'green';
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#14E8BB';
-            
-            ctx.beginPath();
-            ctx.moveTo(prePoint.x, prePoint.y);      
-            ctx.lineTo(clientX, clientY);            
-            ctx.stroke();
+ function change(color) {
+     ctx.strokeStyle = color;
+ }
+
+ function changeThickness(width) {
+     ctx.lineWidth = width;
+ }
+ function savee(){
+     alert("Zapisano");
+ }
+
+//window.addEventListener('resize',function(e){
+ //canvas.width = parseInt(paint_style.getPropertyValue('width'));
+ //       canvas.height = parseInt(paint_style.getPropertyValue('height'));
+//		},false);
+//}
+//window.addEventListener('orientationchange',function(e){
+// canvas.width = parseInt(paint_style.getPropertyValue('width'));
+//        canvas.height = parseInt(paint_style.getPropertyValue('height'));
+//		},false);
+//}
+window.addEventListener("resize",function(){
+
+  tmpCanvas.width = canvas.height;
+  tmpCanvas.height = canvas.width;
+  tmpCtx = tempCanvas.getContext('2d');
+ 
+  // Copy to temporary canvas
+  tempCanvas.drawImage(canvas, 0, 0);
+  
+  // Resize original canvas
+  canvas.width = parseInt(paint_style.getPropertyValue('width'));
+   canvas.height = parseInt(paint_style.getPropertyValue('height'));
+  // Copy back to resized canvas
+  ctx = canvas.getContext('2d');
+  ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.height, canvas.width);
+
+
+},false);
+window.addEventListener("orientationchange", function() {
+	// Announce the new orientation number
+	//alert(screen.orientation);
+	  // Set up temporary canvas
+  tmpCanvas.width = canvas.height;
+  tmpCanvas.height = canvas.width;
+  tmpCtx = tempCanvas.getContext('2d');
+ 
+  // Copy to temporary canvas
+  tempCanvas.drawImage(canvas, 0, 0);
+  
+  // Resize original canvas
+   canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  // Copy back to resized canvas
+  ctx = canvas.getContext('2d');
+  ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.height, canvas.width);
+
+}, false);
+ //Touch events
+    canvas.addEventListener('touchstart', function(e) {
+        ctx.beginPath();
+       x = e.changedTouches[0].pageX;
+		y = e.changedTouches[0].pageY-44;
+		ctx.moveTo(x,y);
+
+    }, false);
+
+    canvas.addEventListener('touchmove', function(e){
+x = e.changedTouches[0].pageX;
+		y = e.changedTouches[0].pageY-44;
+		ctx.lineTo(x,y);
+		ctx.stroke();
+
+
+    }, false);
+
+    canvas.addEventListener("touchend", function (e) {
+        var mouseEvent = new MouseEvent("mouseup", {});
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    // Prevent scrolling when touching the canvas
+    document.body.addEventListener("touchstart", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
         }
-        prePoint = {
-            x: clientX,
-            y: clientY
-        
-    } else if ($index === 1) {                       
-        let ctx = canvas.getContext('2d');
-        ctx.clearRect(clientX - 10, clientY - 10, 20, 20)
-    }
-});
-
-canvas.addEventListener('touchend',function (e){
-    
-    prePoint={undefined};
-});
-
-
-$('.save').on('click',function () {
-    let ctx = canvas.getContext('2d');
-    
-    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    for(let i = 0; i < imageData.data.length; i += 4) {
-    
-        if(imageData.data[i + 3] == 0) {
-            imageData.data[i] = 255;
-            imageData.data[i + 1] = 255;
-            imageData.data[i + 2] = 255;
-            imageData.data[i + 3] = 255;
+    }, false);
+    document.body.addEventListener("touchend", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
         }
+    }, false);
+    document.body.addEventListener("touchmove", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+    }, false);
+
+
+    //Mouse events
+
+
+    canvas.addEventListener('mousemove', function(e) {
+      mouse.x = e.pageX - this.offsetLeft;
+        mouse.y = e.pageY - this.offsetTop;
+    }, false);
+
+    canvas.addEventListener('mousedown', function(e) {
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+
+        canvas.addEventListener('mousemove', onPaint, false);
+    }, false);
+
+    canvas.addEventListener('mouseup', function() {
+        canvas.removeEventListener('mousemove', onPaint, false);
+    }, false);
+
+    var onPaint = function() {
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+    };
+
+    var button = document.getElementById('btn-download');
+    button.addEventListener('click', function (e) {
+        var dataURL = canvas.toDataURL('image/png');
+        button.href = dataURL;
+    });
+
+
+    function handleImage(e){
+        var reader = new FileReader();
+        reader.onload = function(event){
+            var img = new Image();
+            img.onload = function(){
+
+                ctx.drawImage(img,0,0,canvas.width,canvas.height);
+            }
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
     }
-    ctx.putImageData(imageData, 0, 0);
-
-    window.open(canvas.toDataURL('image/png'));
-});
-
-$('.reset').on('click',function () {
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-});

@@ -1,42 +1,53 @@
-<!DOCTYPE html>
-<html lang="zh-Hans">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Paint</title>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+ <title>Paint</title>
 
+	<meta charset="utf-8" /> 
+<link rel="stylesheet" href="styl.css" type="text/css" />
 </head>
 <body>
-
-
-<div class="main-layout">
-    <canvas id="app" class="drawInput"></canvas>
-</div>
-<div class="bottom-layout clearfix">
-    <div class="footbar clearfix">
-        <ul class="footbar-wrapper clearfix">
-            <li class="pen-tool foot-tool pen current">
-                <img src="https://ooo.0o0.ooo/2017/07/14/5968a91f59c4a.png" alt="creion" class="icon pen">
-                <span>draw</span>
-            </li>
-            <li class="pen-tool foot-tool eraser">
-                <img src="https://ooo.0o0.ooo/2017/07/14/5968b0b5020e2.png" alt="guma" class="icon eraser">
-                <span>erase</span>
-            </li>
-            <li class="foot-tool save">
-                <img src="https://i.loli.net/2017/07/14/5968a91f57fa3.png" alt="salvare" class="icon save">
-                <span>save</span>
-            </li>
-            <li class="foot-tool reset">
-                <img src="https://i.loli.net/2017/07/14/5968a91f2ac1b.png" alt="reset" class="icon rest">
-                <span>reset</span>
-            </li>
-        </ul>
+<div id="page">
+    <div class="header">
+		<a onClick="newCanvas()" class="navbtn">New</a>
+        <div class="title">Canvas</div>
     </div>
+   <div id="paint">
+    <canvas id="myCanvas"></canvas>
 </div>
-</body>
+ <div class="footer">
+	
+		<div class="case">
+			<div class="menu" title="Kolor">
+				  <select onchange="change(this.value)" class="navbtn">
+                <option value="red">Rosu</option>
+                <option value="blue">Albastru</option>
+                <option value="green">Verde</option>
+                <option value="pink">Roz</option>
+				<option value="black">Negru</option>
+				<option value="white">Alb</option>
+            </select>
+			</div>	
+			
+			<div class="menu" title="Meniu">
+				 <select onchange="changeThickness(this.value)" class="navbtn">
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+        </select>
+			</div>
+			<div class="menu" title="Meniu">
+				<a href="#" class="navbtn" id="btn-download" download="my-file-name.png">Download</a>
+			</div>	
+			<div class="menu" title="Meniu">
+				<input type="file" id="imageLoader" style="color:transparent;" onchange="this.style.color = 'black';" name="imageLoader" class="navbtn"/>
+			</div>
+				
+			<div style="clear:both"></div>
+		</div>
+    </div>
+</div> 
+<script type="text/javascript" src="p.js"></script>
 
-<script src="p.js" ></script>
+</body>
 </html>
