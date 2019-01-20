@@ -17,7 +17,7 @@ window.onload = function() {
 
   function clear() {
     context.fillStyle = "#ffffff";
-    context.rect(0, 0, 1280, 720);
+    context.rect(0, 0, 300, 300);
     context.fill();
   }
 
@@ -62,5 +62,6 @@ window.onload = function() {
 
   var clearButton = document.getElementById('clear')
   clearButton.onclick = clear
+
   clear()
 }
