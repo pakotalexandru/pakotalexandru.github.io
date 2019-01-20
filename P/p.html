@@ -9,39 +9,42 @@
 <body>
 <div id="page">
     <div class="header">
-		<a onClick="newCanvas()" class="navbtn">New</a>
-        <div class="title">Canvas</div>
+		<button onClick="newCanvas()" class="navbtn">Nou!</button>
+        
     </div>
    <div id="paint">
-    <canvas id="myCanvas"></canvas>
+    <canvas id="myCanvas" width="500px" height="500px" style="border:2px solid #000000;"></canvas>
 </div>
  <div class="footer">
 	
-		<div class="case">
-			<div class="menu" title="Kolor">
-				  <select onchange="change(this.value)" class="navbtn">
+		
+			
+				  <b>Culoare:<select onchange="change(this.value)" class="navbtn">
                 <option value="red">Rosu</option>
                 <option value="blue">Albastru</option>
                 <option value="green">Verde</option>
                 <option value="pink">Roz</option>
 				<option value="black">Negru</option>
 				<option value="white">Alb</option>
-            </select>
-			</div>	
+            </select></b><br>
 			
-			<div class="menu" title="Meniu">
-				 <select onchange="changeThickness(this.value)" class="navbtn">
+			
+			
+				<b>Size<select onchange="changeThickness(this.value)" class="navbtn">
             <option value="1">1</option>
             <option value="5">5</option>
             <option value="10">10</option>
         </select>
-			</div>
-			<div class="menu" title="Meniu">
-				<a href="#" class="navbtn" id="btn-download" download="my-file-name.png">Download</a>
-			</div>	
-			<div class="menu" title="Meniu">
-				<input type="file" id="imageLoader" style="color:transparent;" onchange="this.style.color = 'black';" name="imageLoader" class="navbtn"/>
-			</div>
+				</b>
+			
+			
+			<br>
+				<b>Descarca:</b><a href="#" class="navbtn" id="btn-download" download="my-file-name.png">Aici!</a>
+			
+			    <br>
+				<b>Încarcă:</b><input type="file" id="imageLoader" style="color:transparent;" onchange="this.style.color = 'black';" name="imageLoader" class="navbtn"/>
+			
+			
 				
 			<div style="clear:both"></div>
 		</div>
