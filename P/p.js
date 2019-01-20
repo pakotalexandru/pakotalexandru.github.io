@@ -8,7 +8,7 @@
     var paint_style = getComputedStyle(painting);
     canvas.width = parseInt(paint_style.getPropertyValue('width'));
     canvas.height = parseInt(paint_style.getPropertyValue('height'));
-	canvas.addEventListener("touchmove", on_touch_move);
+	
 
 
     var mouse = {x: 0, y: 0};
@@ -28,24 +28,6 @@ function newCanvas(){
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'red';
 }
-
-
-function on_touch_move(e){
-	e.preventDefault();
-	for(var i = 0; i < e.changedTouches.length; i++){
-		var context = canvas.getContext("2d");
-		context.beginPath();
-		context.arc(e.changedTouches[i].pageX - canvas_boundig_rect.left,
-					e.changedTouches[i].pageY - canvas_boundig_rect.top, 10, 0, 2 * Math.PI);
-		context.stroke();
-		last_pos.x = e.changedTouches[i].pageX
-		last_pos.y = e.changedTouches[i].pageY
-	}
-}
-
-
-
-
 
  function change(color) {
      ctx.strokeStyle = color;
