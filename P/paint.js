@@ -59,6 +59,7 @@ window.onload = function() {
     lasty = newy;
   }
 
+function color(colour){c.beginPath();c.strokeStyle=colour;c.fillStyle=colour;c.closePath();}
 
   var clearButton = document.getElementById('clear')
   clearButton.onclick = clear
