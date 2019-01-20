@@ -1,50 +1,48 @@
 <!doctype html>
 <html>
 <head>
- <title>Paint</title>
-
+ <title>Projekt Canvas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<meta charset="utf-8" /> 
 <link rel="stylesheet" href="styl.css" type="text/css" />
 </head>
 <body>
 <div id="page">
     <div class="header">
-		<button onClick="newCanvas()" class="navbtn">Nou!</button>
-        <div class="title">Canvas</div>
+		<a onClick="newCanvas()" class="navbtn">Nou!</a>
+        <div class="title">Canvas:</div>
     </div>
    <div id="paint">
     <canvas id="myCanvas"></canvas>
 </div>
  <div class="footer">
 	
-		
-			
-				  <b>Culoare:<select onchange="change(this.value)" class="navbtn">
+		<div class="case">
+			<div class="menu" title="Culoare">
+				  <select onchange="change(this.value)" class="navbtn">
                 <option value="red">Rosu</option>
                 <option value="blue">Albastru</option>
                 <option value="green">Verde</option>
                 <option value="pink">Roz</option>
 				<option value="black">Negru</option>
 				<option value="white">Alb</option>
-            </select></b><br>
+            </select>
+			</div>	
 			
-			
-			
-				<b>Size<select onchange="changeThickness(this.value)" class="navbtn">
+			<div class="menu" title="Size">
+				 <select onchange="changeThickness(this.value)" class="navbtn">
             <option value="1">1</option>
             <option value="5">5</option>
             <option value="10">10</option>
         </select>
-				</b>
-			
-			
-			<br>
-				<b>Descarca:</b><a href="#" class="navbtn" id="btn-download" download="my-file-name.png">Aici!</a>
-			
-			    <br>
-				<b>Încarcă:</b><input type="file" id="imageLoader" style="color:transparent;" onchange="this.style.color = 'black';" name="imageLoader" class="navbtn"/>
-			
-			
+			</div>
+			<div class="menu" title="Download">
+				<a href="#" class="navbtn" id="btn-download" download="my-file-name.png">Download</a>
+			</div>	
+			<div class="menu" title="Upload">
+				<input type="file" id="imageLoader" style="color:transparent;" onchange="this.style.color = 'black';" name="imageLoader" class="navbtn"/>
+			</div>
 				
 			<div style="clear:both"></div>
 		</div>
