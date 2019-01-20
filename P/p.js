@@ -1,4 +1,4 @@
-  var imageLoader = document.getElementById('imageLoader');
+    var imageLoader = document.getElementById('imageLoader');
     imageLoader.addEventListener('change', handleImage, false);
 
     var canvas = document.getElementById('myCanvas');
@@ -8,7 +8,6 @@
     var paint_style = getComputedStyle(painting);
     canvas.width = parseInt(paint_style.getPropertyValue('width'));
     canvas.height = parseInt(paint_style.getPropertyValue('height'));
-	
 
 
     var mouse = {x: 0, y: 0};
