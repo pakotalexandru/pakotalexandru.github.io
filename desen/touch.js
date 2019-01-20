@@ -31,7 +31,6 @@ function on_touch_move(e){
 		context.arc(e.changedTouches[i].pageX - canvas_boundig_rect.left,
 					e.changedTouches[i].pageY - canvas_boundig_rect.top, 10, 0, 2 * Math.PI);
 		context.stroke();
-		last_pos.x = e.changedTouches[i].pageX
-		last_pos.y = e.changedTouches[i].pageY
+		
 	}
 }
