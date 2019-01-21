@@ -35,10 +35,6 @@ function newCanvas(){
  function changeThickness(width) {
      ctx.lineWidth = width;
  }
- function savee(){
-     alert("Zapisano");
- }
-
 
 window.addEventListener("resize",function(){
 
