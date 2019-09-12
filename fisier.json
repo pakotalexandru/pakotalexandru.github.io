@@ -1,0 +1,27 @@
+[
+    {
+        "id":"4",
+        "nume":"Stefan Andrei",
+        "adresa":"Strada de jos",
+        "varsta":"32",
+        "departament":"IT"
+    },
+
+
+
+    {
+        "id":"5",
+        "nume":"Stef Alin",
+        "adresa":"Strada de sus",
+        "varsta":"43",
+        "departament":"Muncitor"
+    },
+
+    {
+        "id":"6",
+        "nume":"Marcel Marinel",
+        "adresa":"Strada de mijloc",
+        "varsta":"23",
+        "departament":"Sef"
+    }
+]
